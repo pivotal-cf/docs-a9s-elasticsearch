@@ -3,7 +3,7 @@ book_repo: docs-book
 layout_repo: docs-layout
 
 broken_link_exclusions: iefix|arrowhead
-repo_link_enabled: true
+repo_link_enabled: false
 
 pcf_header: &local_pcf
   use_local_header: true
@@ -16,8 +16,8 @@ public_host: hello
 sections:
   - repository:
       name: docs-content
-    directory: myservice
-    subnav_template: myservice_subnav.erb       
+    directory: a9s-elasticsearch-for-pcf
+    subnav_template: a9s-elasticsearch-for-pcf_subnav.erb
 
 template_variables:                             # optional
 
