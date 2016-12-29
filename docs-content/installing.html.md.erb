@@ -22,11 +22,13 @@ to upload the product file.
 4. Click the newly added tile and select **Settings** > 
 **Assign AZs and Networks**.
 
-5. Configure the location of service instance jobs. You should configure your network to balance cluster jobs between as many AZs as possible.
+5. Configure the location of service instance jobs. 
+   Configure your network to balance cluster jobs between as many AZs as possible.
 
 	![AZ and networks tab"](az-and-networks.png)
 
-1. Optionally, review the remaining configuration panes. See the following sections for more information on how to configure the properties of each pane:
+6. (Optional) Review the remaining configuration panes. 
+   For more information on how to configure the properties of each pane, see the following:
 	* [Errands](#errands)
 	* [Resource Config](#resource-config)
 	* [Stemcell](#stemcell)
@@ -35,9 +37,11 @@ to upload the product file.
 
 ##<a id="configure-service-instance"></a> Configure Service Plan VMs
 
-You can configure the dimensions of the VMs used to provision *service instances* of a given *service plan* in the **IaaS Settings** pane of the a9s BOSH for PCF tile.
+You can configure the dimensions of the VMs used to provision *service instances* of a given *service plan* 
+in the **IaaS Settings** pane of the a9s BOSH for PCF tile.
 
-The following table describes which [Cloud-Config fields](http://docs.pivotal.io/a9s-bosh/installing.html#cloud-config) in the a9s BOSH for PCF tile correspond to which a9s Elasticsearch for PCF service plans.
+The following table describes which [Cloud-Config fields](http://docs.pivotal.io/a9s-bosh/installing.html#cloud-config) 
+in the a9s BOSH for PCF tile correspond to which a9s Elasticsearch for PCF service plans.
 
 <table>
 	<tr>
@@ -66,7 +70,7 @@ The following table describes which [Cloud-Config fields](http://docs.pivotal.io
 	</tr>
 </table>
 
-See [About Configuring a9s BOSH for PCF](http://docs.pivotal.io/a9s-bosh/installing.html#configure) for more information on how to set VM dimensions.
+For information about setting VM dimensions, see [About Configuring a9s BOSH for PCF](http://docs.pivotal.io/a9s-bosh/installing.html#configure).
 
 ##<a id='configure'></a> Configure a9s Elasticsearch for PCF
 
@@ -74,8 +78,9 @@ The following sections describe the optional configuration panes in the a9s Elas
 
 ### <a id='errands'></a>Errands
 
-The **Errands** pane lists <a href="https://bosh.io/docs/terminology.html#errand" target="_blank">
-BOSH errands</a> executed by the tile. See the following table for information about what each errand does, and guidance for activating or deactivating each errand. 
+The **Errands** pane lists <a href="https://bosh.io/docs/terminology.html#errand" target="_blank"> BOSH errands</a> 
+executed by the tile. 
+For information about what each errand does and guidance for activating or deactivating each errand, see the following table:
 
 <table>
   <tr>
@@ -84,13 +89,15 @@ BOSH errands</a> executed by the tile. See the following table for information a
   </tr>
   <tr>
     <td>Run BOSH Configurator</td>
-    <td>Uploads the stemcells required for the BOSH release so that a9s BOSH for PCF can provision Elasticsearch instances. Deactivating this errand may speed up the deployment of tiles.
+    <td>Uploads the stemcells required for the BOSH release so that a9s BOSH for PCF can provision Elasticsearch instances. 
+        Deactivating this errand may speed up the deployment of tiles.
       <p class="note"><strong>Note</strong>: Pivotal recommends leaving this errand selected to keep the tile configuration up-to-date.</p>
     </td>
   </tr>
   <tr>
     <td>Run Template Uploader</td>
-    <td>Applies Elasticsearch-specific configurations to generic components of a9s Elasticsearch for PCF. This errand must run at least once. Deactivating this errand may speed up the deployment of tiles.
+    <td>Applies Elasticsearch-specific configurations to generic components of a9s Elasticsearch for PCF. 
+        This errand must run at least once. Deactivating this errand may speed up the deployment of tiles.
       <p class="note"><strong>Note</strong>: Pivotal recommends leaving this errand selected to keep the tile configuration up-to-date.</p>
     </td>
   </tr>
@@ -108,11 +115,12 @@ BOSH errands</a> executed by the tile. See the following table for information a
 
 ###<a id='resource-config'></a> Resource Config
 
-You can configure the dimensions of the VMs that host the a9s Elasticsearch for PCF components. This configuration does not cover the dedicated Elasticsearch instances that run on VMs provided by the a9s BOSH tile for PCF. See the [Configure Service Plan VMs](#configure-service-instance) topic for more information.
+You can configure the dimensions of the VMs that host the a9s Elasticsearch for PCF components. 
+This configuration does not cover the dedicated Elasticsearch instances that run on VMs provided by the a9s BOSH tile for PCF. 
+For more information, see [Configure Service Plan VMs](#configure-service-instance).
 
 <p class="note"><strong>Note</strong>: Pivotal recommends using a VM Type of large or greater to support the tile compilation.</p>
 
 ###<a id='stemcell'></a>Stemcell
 
-If you want to use a stemcell other than the default one, you can upload it in
-the **Stemcell** pane.
+If you want to use a stemcell other than the default one, you can upload it in the **Stemcell** pane.

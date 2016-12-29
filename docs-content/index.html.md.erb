@@ -9,8 +9,11 @@ This documentation describes the a9s Elasticsearch for Pivotal Cloud Foundry (PC
 
 ## <a id='overview'></a>Overview
 
-a9s Elasticsearch for PCF enables on-demand provisioning of VM-based, dedicated Elasticsearch servers and clusters. Developers can create instances of a Elasticsearch server or cluster using Apps Manager or the Cloud Foundry Command Line interface (cf CLI), and bind these instances to an application.
-Depending on the chosen service plan, a service instance may be associated with a single, dedicated virtual machine, or a set of VMs consisting of multiple virtual machines comprising a cluster of Elasticsearch servers.
+a9s Elasticsearch for PCF enables on-demand provisioning of VM-based, dedicated Elasticsearch servers and clusters. 
+Developers can create instances of an Elasticsearch server or a cluster using Apps Manager or the 
+Cloud Foundry Command Line Interface (cf CLI) tool and bind these instances to an app.
+Depending on the chosen service plan, a service instance may be associated with a single, dedicated VM 
+or a set of VMs consisting of multiple VMs comprising a cluster of Elasticsearch servers.
 
 ### <a id="current"></a>Current Features
 
@@ -18,8 +21,8 @@ a9s Elasticsearch for PCF includes the following key features:
 
 | Feature | Benefits |
 |---|---|
-| **On&dash;demand Service Instance Provisioning** | <ul><li>Fully automated deployment of Elasticsearch. Developers can provision a single VM Elasticsearch server or a multi VM Elasticsearch cluster with a single command.</li><li>Only existing service instances allocate infrastructure resources, which are immediately released when you delete the service instance.</li><li>The number of service instances is not limited by design.</li></ul>|
-| **Service Instance Isolation** | <ul><li>Each Elasticsearch server runs on a **dedicated virtual machine** to ensure **bad neighborhood protection** and align with enterprise security requirements.</li><li>Cloud Foundry **security groups** ensure that **only authorized applications** connect to service instances.</li></ul>
+| **On&dash;Demand Service Instance Provisioning** | <ul><li>Fully automated deployment of Elasticsearch. Developers can provision a single VM Elasticsearch server or a multiple VM Elasticsearch cluster with a single command.</li><li>Only existing service instances allocate infrastructure resources, which are immediately released when you delete the service instance.</li><li>The number of service instances is not limited by design.</li></ul>|
+| **Service Instance Isolation** | <ul><li>Each Elasticsearch server runs on a **dedicated VM** to ensure **bad neighborhood protection** and align with enterprise security requirements.</li><li>Cloud Foundry **security groups** ensure that **only authorized apps** connect to service instances.</li></ul>
 | **High Availability** | <ul><li>Clusters are set up using the Elasticsearch inherent clustering feature.</li><li>**Consul-based internal DNS** delivered by a9s Consul DNS for PCF ensures that the connected app always connects to a working node.</li><li>The clustered data service plans are **spread across several infrastructure availability zones**, which enables very **short failover times** and a **strong resilience against failures** of individual infrastructure hosts or even entire availability zones.</li>|
 
 ### <a id="upcoming"></a>Upcoming Features
@@ -29,7 +32,7 @@ These features will be included in upcoming a9s Elasticsearch for PCF tile relea
 
 | Feature | Benefits |
 |---|---|
-| **On&dash;demand Encrypted Remote Connectivity** | You can establish a **private encrypted tunnel** to your service instance **on&dash;demand**. Developers can use this connection to perform manual backups. As soon as the public connection is obsolete, you can terminate the tunnel to prevent further access. An additional component, the Service Jumper Module, provides this functionality. |
+| **On&dash;Demand Encrypted Remote Connectivity** | You can establish a **private encrypted tunnel** to your service instance **on&dash;demand**. Developers can use this connection to perform manual backups. As soon as the public connection is obsolete, you can terminate the tunnel to prevent further access. An additional component, the Service Jumper Module, provides this functionality. |
 | **Service Instance Capacity Upgrade** | You can **upgrade of the RAM, CPU, and storage capacity** for your Elasticsearch instances. |
 | **Logging and Monitoring** | Each Elasticsearch service instance **delivers log messages** and Elasticsearch-specific **metrics** to one or more **syslog/graphite** endpoints. Developers can configure the syslog/graphite endpoint to receive this data. |
 
@@ -38,9 +41,9 @@ These features will be included in upcoming a9s Elasticsearch for PCF tile relea
 <dl>
 <dt>a9s Elasticsearch for PCF Details:</dt>
 <dd><strong>Version</strong>: v0.9.0 </dd>
-<dd><strong>Release Date</strong>: December 28, 2016</dd>
-<dd><strong>Compatible Ops Manager Versions:</strong> 1.7.x</dd>
-<dd><strong>Compatible Elastic Runtime Versions:</strong> 1.7.x, 1.8.x</dd>
+<dd><strong>Release Date</strong>: December 28 2016</dd>
+<dd><strong>Compatible Ops Manager Versions:</strong> v1.7.x</dd>
+<dd><strong>Compatible Elastic Runtime Versions:</strong> v1.7.x, v1.8.x</dd>
 <dd><strong>vSphere support?</strong> Yes</dd>
 </dl>
 
@@ -48,20 +51,24 @@ These features will be included in upcoming a9s Elasticsearch for PCF tile relea
 
 To install and use a9s Elasticsearch for PCF, you must install the following products and tiles:
 
-* Elastic Runtime 1.7 or 1.8
-* a9s Consul DNS for PCF 0.9.0
-* a9s BOSH for PCF 0.9.0
+* Elastic Runtime v1.7 or v1.8
+* a9s Consul DNS for PCF v0.9.0
+* a9s BOSH for PCF v0.9.0
 
 For more information, see [Installing and Configuring a9s Elasticsearch for PCF](./installing.html).
 
 ## <a id="feedback"></a>Feedback and Support
 
-a9s Elasticsearch for PCF is an automation toolset for Open Source Elasticsearch. The entire anynines team can help your team get started and be successful. Technical support, including a service level agreement, is available with a commercial license.
+a9s Elasticsearch for PCF is an automation toolset for Open Source Elasticsearch. 
+The entire anynines team can help your team get started and be successful. 
+Technical support, including a service level agreement, is available with a commercial license.
 
-If your company has specific Elasticsearch administration policies or configuration best practices, the anynines team is happy to incorporate them,
-if applicable. Third-party party Elasticsearch support organizations are also welcome to assist.
+If your company has specific Elasticsearch administration policies or configuration best practices, 
+the anynines team is happy to incorporate them, if applicable. 
+Third-party Elasticsearch support organizations are also welcome to assist.
 
-Contributions are welcome and will be investigated by the anynines team. Send any bugs, feature requests, or questions to svc.support@anynines.com.
+Contributions are welcome and will be investigated by the anynines team. 
+Send any bugs, feature requests, or questions to svc.support@anynines.com.
 
 ## <a id='license'></a>License
 
