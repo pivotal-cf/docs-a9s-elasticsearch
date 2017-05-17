@@ -2,15 +2,6 @@
 title: Installing and Configuring the a9s Elasticsearch for PCF
 owner: Partners
 ---
-<style>
-    .note.warning {
-        background-color: #fdd;
-        border-color: #fbb
-    }
-    .note.warning:before {
-        color: #f99;
-     }
-</style>
 
 This topic describes how to install and configure a9s Elasticsearch for Pivotal Cloud Foundry (PCF).
 
@@ -22,24 +13,25 @@ Before installing a9s Elasticsearch for PCF, ensure that you have installed and 
 This comprises the **a9s Consul DNS for PCF** tile and the **a9s BOSH for PCF**
 tile.
 
-In short, the a9s Consul DNS for PCF tile is required because it is responsible
+The a9s Consul DNS for PCF tile is required because it is responsible
 for providing an internal DNS system to the other a9s service tiles, the a9s
-Elasticsearch for PCF included. You can find further information about this tile
-in [its own documentation](https://docs.pivotal.io/partners/a9s-consul-dns/usecase.html).
+Elasticsearch for PCF included.
+For more information about this tile, 
+see [The Purpose of the a9s Consul DNS for PCF Tile](https://docs.pivotal.io/partners/a9s-consul-dns/usecase.html).
 
-As for the a9s BOSH for PCF tile, it is required because it is used by the a9s
-service tiles, for the provisioning and lifecycle managment of their vitual
-machine. Further information on this tile can be found in [its own documentation](https://docs.pivotal.io/partners/a9s-bosh/usecase.html).
+The a9s BOSH for PCF tile is required because it is used by the a9s
+service tiles, for the provisioning and lifecycle managment of their VM.
+For more information about this tile, see [a9s BOSH for PCF Use Case](https://docs.pivotal.io/partners/a9s-bosh/usecase.html).
 
 ##<a id='install'></a> Install a9s Elasticsearch for PCF
 
-To install a9s Elasticsearch for PCF, perform the following steps
+To install a9s Elasticsearch for PCF, perform the following steps:
 
 1. Download the product file from [Pivotal Network](https://network.pivotal.io/products/a9s-elasticsearch).
 
 2. Navigate to the Ops Manager Installation Dashboard and click **Import a Product** to upload the product file.
 
-3. Click **Add** or **+**(depending on the PCF version) next to the uploaded a9s Elasticsearch for PCF tile in the Ops Manager
+3. Click **Add** or **+** (depending on the PCF version) next to the uploaded a9s Elasticsearch for PCF tile in the Ops Manager
 **Available Products** view to add it to your staging area.
 
 4. Click the new tile, then click **Settings** to review the configuration settings for each tab.
@@ -51,18 +43,22 @@ To install a9s Elasticsearch for PCF, perform the following steps
 
 5. Click **Apply Changes** to deploy the service.
 
-After you install a9s Elasticsearch for PCF, developers can access the service in the Marketplace. See [Using a9s Elasticsearch for PCF](./using.html).
+After you install a9s Elasticsearch for PCF, developers can access the service in the Marketplace.
+See [Using a9s Elasticsearch for PCF](./using.html).
 
 
 ###<a id="azs"></a>Assign AZs and Networks
 
-Use **Assign AZs and Networks** to configure the location of service instance jobs. You should configure your network to balance cluster jobs between as many AZs as possible.
+Use **Assign AZs and Networks** to configure the location of service instance jobs.
+You should configure your network to balance cluster jobs between as many AZs as possible.
 
 <%= image_tag("az-and-networks.png") %>
 
 ### <a id='errands'></a>Configure Errands
 
-Use **Errands** to configure the lifecycle errands that run when you install or uninstall a9s Elasticsearch for PCF. The list below describes each errand. For more information, see [Understanding Lifecycle Errands](https://docs.pivotal.io/tiledev/tile-errands.html).
+Use **Errands** to configure the lifecycle errands that run when you install or uninstall a9s Elasticsearch for PCF.
+The list below describes each errand. 
+For more information, see [Understanding Lifecycle Errands](https://docs.pivotal.io/tiledev/tile-errands.html).
 
 <%= image_tag("a9s-elasticsearch-errands.png") %>
 
