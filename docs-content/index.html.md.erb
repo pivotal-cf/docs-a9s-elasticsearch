@@ -3,22 +3,6 @@ title: a9s Elasticsearch for PCF (Beta)
 owner: Partners
 ---
 
-<style>
-    .note.warning {
-        background-color: #fdd;
-        border-color: #fbb
-    }
-
-    .note.warning:before {
-        color: #f99;
-     }
-</style>
-
-<p>
-  <iframe src="http://www.youtube.com/embed/kqZmhBcDC6E"
-    width="656" height="372" frameborder="0" allowfullscreen></iframe>
-</p>
-
 <p class="note warning">
 <strong>IMPORTANT: </strong>
 The a9s Elasticsearch for PCF tile is currently in beta and is intended for evaluation and test purposes only.
@@ -47,16 +31,25 @@ a9s Elasticsearch for PCF includes the following key features:
 | **Service Instance Isolation** | <ul><li>Each Elasticsearch server runs on a **dedicated VM** to ensure **bad neighborhood protection** and align with enterprise security requirements.</li><li>Cloud Foundry **security groups** ensure that **only authorized apps** connect to service instances.</li></ul>
 | **High Availability** | <ul><li>Clusters are set up using the Elasticsearch inherent clustering feature.</li><li>**Consul-based internal DNS** delivered by a9s Consul DNS for PCF ensures that the connected app always connects to a working node.</li><li>The clustered data service plans are **spread across several infrastructure availability zones**, which enables very **short failover times** and a **strong resilience against failures** of individual infrastructure hosts or even entire availability zones.</li>|
 
-### <a id="upcoming"></a>Upcoming Features
+[//]: # (### <a id="upcoming"></a>Upcoming Features)
 
-The following features have already been developed and tested on <a href="https://paas.anynines.com/" target="_blank">paas.anynines.com</a>.
-These features will be included in upcoming a9s Elasticsearch for PCF tile releases.
+[//]: # (The following features have already been developed and tested on <a href="https://paas.anynines.com/" target="_blank">paas.anynines.com</a>.)
+[//]: # (These features will be included in upcoming a9s Elasticsearch for PCF tile releases.)
 
-| Feature | Benefits |
-|---|---|
-| **On&dash;Demand Encrypted Remote Connectivity** | You can establish a **private encrypted tunnel** to your service instance **on&dash;demand**. Developers can use this connection to perform manual backups. As soon as the public connection is obsolete, you can terminate the tunnel to prevent further access. An additional component, the Service Jumper Module, provides this functionality. |
-| **Service Instance Capacity Upgrade** | You can **upgrade of the RAM, CPU, and storage capacity** for your Elasticsearch instances. |
-| **Logging and Monitoring** | Each Elasticsearch service instance **delivers log messages** and Elasticsearch-specific **metrics** to one or more **syslog/graphite** endpoints. Developers can configure the syslog/graphite endpoint to receive this data. |
+[//]: # (| Feature | Benefits |)
+[//]: # (|---|---|)
+[//]: # (| **On&dash;Demand Encrypted Remote Connectivity** | You can establish a **private encrypted tunnel** to your service instance **on&dash;demand**. Developers can use this connection to perform manual backups. As soon as the public connection is obsolete, you can terminate the tunnel to prevent further access. An additional component, the Service Jumper Module, provides this functionality. |)
+[//]: # (| **Service Instance Capacity Upgrade** | You can **upgrade of the RAM, CPU, and storage capacity** for your Elasticsearch instances. |)
+[//]: # (| **Logging and Monitoring** | Each Elasticsearch service instance **delivers log messages** and Elasticsearch-specific **metrics** to one or more **syslog/graphite** endpoints. Developers can configure the syslog/graphite endpoint to receive this data. |)
+
+### <a id='video'></a>Video Overview of a9s Elasticsearch for PCF
+
+The following video provides an overview of how a9s Elasticsearch for PCF works.
+
+<p>
+  <iframe src="http://www.youtube.com/embed/kqZmhBcDC6E"
+    width="656" height="372" frameborder="0" allowfullscreen></iframe>
+</p>
 
 ## <a id="snapshot"></a>Product Snapshot
 
