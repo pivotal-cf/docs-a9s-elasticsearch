@@ -3,195 +3,161 @@ title: Using the a9s Elasticsearch for PCF
 owner: Partners
 ---
 
-This topic describes how developers use a9s Elasticsearch for Pivotal Cloud Foundry (PCF) after it has been successfully installed. 
-For information about installation, see [Installing and Configuring Elasticsearch for PCF](./installing.html).
+This topic describes how developers use a9s Elasticsearch for PCF after it has been successfully installed. For information about installation, see the [Installing and Configuring Elasticsearch for PCF](./installing.html) topic.
 
-##<a id='using'></a> Use a9s Elasticsearch for PCF with an App
+##<a id='using'></a> Use a9s Elasticsearch for PCF with an Application
 
-To use the a9s Elasticsearch for PCF with with an app, follow the procedures below 
-to create a service instance and bind the service instance to your app. 
-For more information about managing service instances, see <a href="https://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html">Managing Service Instances with the CLI</a>.
+To use a9s Elasticsearch for PCF with an application, create a service instance and bind the service instance
+to your application. For more information on managing service instances, see <a href="http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html" target="_blank">Managing Service Instances with the cf CLI</a>.
 
-### <a id="list"></a>View the Service
+### View the a9s Elasticsearch for PCF Service
 
-After the tile is installed, `a9s-elasticsearch` and its service plans appear in your Marketplace. 
-
-1. To check the availability of the service and its plans, enter the following command:
-
-    ```
-    $ cf marketplace
-    ```
-    For example, 
-
-    <pre class="terminal">
+After the tile is installed, you can see the `a9s-elasticsearch5` and its service plans appear in your PCF marketplace. Run `cf marketplace` to see the service listing:
+<pre class="terminal">
 $ cf marketplace
 Getting services from marketplace in org test / space test as admin...
-OK<br>
-service               plans                                                                                                          description
-a9s-elasticsearch     elasticsearch-single-small, elasticsearch-cluster-small, elasticsearch-single-big, elasticsearch-cluster-big   This is the anynines Elasticsearch 5 service.
-    </pre>
+OK
+service               plans                                                     description
+a9s-elasticsearch5    elasticsearch-single-small, elasticsearch-cluster-small,  This is the anynines Elasticsearch 5 service.
+                      elasticsearch-single-big, elasticsearch-cluster-big
+</pre>
 
-2. See [Create a Service Instance](#create) to create Elasticsearch service instances based on the plans you listed in Step 1 above.
-
-The plans that contain `single` in their names, provision single VM Elasticsearch servers. 
-Plans with `cluster`, provision Elasticsearch clusters consisting of three VMs.
+For more information on available service plans, see the [Configure Service Plans](./installing.html#configure-service-instance) topic.
 
 ### <a id="create"></a> Create a Service Instance and Bind It to an App
 
-You can provision a database with the `cf create-service`.
+To provision a Elasticsearch database, run `cf create-service`. For example:
 
-1. To create a service instance, enter the following command: 
-
-    ```
-    $ cf create-service a9a-elasticsearch PLAN-NAME SERVICE-INSTANCE-NAME
-    ```
-
-    For example, the following command creates an `elasticsearch-single-small` service 
-    that provisions a single VM Elasticsearch server: 
-
-    <pre class="terminal">
-$ cf create-service a9s-elasticsearch elasticsearch-single-small my-elasticsearch-service
-    </pre>
-
-    Depending on your infrastructure and service broker usage, it may take several minutes to create the service instance.
-
-2. To check the creation status, do one of the following:
-    * To list all the service instances, enter:
-
-        ```
-        $ cf services
-        ```
-    * To display the status of one service instance, enter:
-
-        ```
-        $ cf service SERVICE-INSTANCE-NAME
-        ```
-
-3. After you create your database, bind the service instance to the app with the following command:
-
-    ```
-    $ cf bind-service APP-NAME SERVICE-INSTANCE-NAME
-    ```
-    
-    For example, the following command binds the `my-elasticsearch-service` service instance to 
-the `a9s-elasticsearch-app` app:
 <pre class="terminal">
-$ cf bind-service a9s-elasticsearch-app my-elasticsearch-service
+$ cf create-service a9s-elasticsearch5 elasticsearch-single-small my-elasticsearch-service
 </pre>
 
-4. Restage or restart the app so that it can access the service instance by doing one of the following:
-    * To restage the app, enter:
+Depending on your infrastructure and service broker utilization, it may take several minutes to create the service instance.
 
-        ```
-        $ cf restage APP-NAME
-        ```
-    * To restart the app, enter:
+Run the `cf services` command to view the creation status. This command displays a list of all your service instances. To view the status of a specific service instance, run `cf service NAME-OF-YOUR-SERVICE`.
 
-        ```
-        $ cf restart APP-NAME
-        ```
-    
-### <a id="obtain"></a>Obtain Service Instance Access Credentials
+### Bind an Application to a Service Instance
 
-After you bind the service instance to the app, you can find the credentials of your Elasticsearch
-database in the environment variables of the app. 
-Because service instances are protected by HTTP Basic Auth, apps connected to it need to add authentication details to all requests.
+After your database is created, run `cf bind-service` to bind the service to your application:
 
-You can use the host, username, and
-password values with a Elasticsearch client to connect to the database.
+<pre class="terminal">
+$ cf bind-service a9s-elasticsearch-app my-elasticsearch5-service
+</pre>
 
-1. To list the environment variables, including the credentials for the Elasticsearch database, enter the following command:
-    ```
-    $ cf env APP-NAME 
-    ```
-    For example, 
-    <pre class="terminal">
+### Restage or Restart Your Application
+
+To enable your application to access the service instance, run `cf restage` or `cf restart` to restage or restart your application.
+
+### <a id="credentials"></a>Obtain Service Instance Access Credentials
+
+After a service instance is bound to an application, the credentials of your Elasticsearch database are stored in the environment variables of the application. Run `cf env APP-NAME` to display the environment variables.
+
+You can find the credentials in the <a href="http://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES" target="_blank">VCAP_SERVICES</a> key.
+
+<pre class="terminal">
 $ cf env a9s-elasticsearch-app
 Getting env variables for app a9s-elasticsearch-app in org test / space test as admin...
-OK<br>
+OK
+
 System-Provided:
 {
- "VCAP\_SERVICES": {
-  "a9s-elasticsearch": [
-   {
-     "credentials": {
-      "host": [
-       "EXAMPLE\_HOST"
-      ],
-      "password": "EXAMPLE\_USER",
-      "username": "EXAMPLE\_PASSWORD"
-    },
-    "label": "a9s-elasticsearch",
-    "name": "my-elasticsearch-service",
-    "plan": "elasticsearch-cluster-small",
-    "tags": [
-     "searchengine"
-    ]
-   }
-  ]
- }
+  "VCAP_SERVICES": {
+   "a9s-elasticsearch": [
+    {
+      "credentials": {
+       "host": [
+        "EXAMPLE_HOST"
+       ],
+       "password": "EXAMPLE_USER",
+       "username": "EXAMPLE_PASSWORD"
+     },
+     "label": "a9s-elasticsearch",
+     "name": "my-elasticsearch-service",
+     "plan": "elasticsearch-cluster-small",
+     "tags": [
+      "searchengine"
+     ]
+    }
+   ]
+  }
 }
 ...
-    </pre>
+</pre>
 
+You can use the host, username, and password values to connect to your database with a Elasticsearch client.
 
-2. Record the credentials that are listed under the <a href="https://docs.pivotal.io/pivotalcf/devguide/deploy-apps/environment-variable.html#VCAP-SERVICES">VCAP_SERVICES</a> key.
+##<a id='deleting'></a> Delete an a9s Elasticsearch for PCF Service Instance
 
-##<a id='deleting'></a> Delete a a9s Elasticsearch for PCF Service Instance
+<p class="note warning"><strong>WARNING</strong>: Before deleting a service instance, you must backup data stored in your database. This operation cannot be undone and all the data is lost when the service is deleted.</p>
 
-Follow the instructions below to unbind your service instance from all apps and delete it.
+Before you can delete a service instance, you must unbind it from all apps.
 
-1.  Back up the data stored in your database.
- 
-    <p class="note"><strong>Note</strong>: The delete operation cannot be undone and all data is lost when the service is deleted.</p>
+### List Available Services
 
-1. List available services by entering the following command:
+Run `cf services` to list your available services.
 
-    ```
-    $ cf services
-    ```
+<pre class="terminal">
+$ cf services
 
-    For example, the following shows that `my-elasticsearch-service` is bound to the `a9s-elasticsearch-app` app.
-    <pre class="terminal">
-$ cf services<br>
 Getting services in org test / space test as admin...
-OK<br>
-name                       service             plan                         bound apps             last operation
-my-elasticsearch-service   a9s-elasticsearch   elasticsearch-single-small   a9s-elasticsearch-app   create succeeded
-    </pre>
+OK
 
-### <a id="unbind"></a>Unbind a Service Instance
+name                       service              plan                         bound apps              last operation
+my-elasticsearch-service   a9s-elasticsearch5   elasticsearch-single-small   a9s-elasticsearch-app   create succeeded
+</pre>
 
-+ To unbind a service instance from your app, enter the following command:
+This example shows that `my-elasticsearch-service` is bound to the `a9s-elasticsearch-app` application.
 
-    ```
-    $ cf unbind-service APP-NAME SERVICE-INSTANCE-NAME
-    ```
+### Unbind a Service Instance
 
-    For example, 
-    <pre class="terminal">
-    $ cf unbind-service a9s-elasticsearch-app my-elasticsearch-service
-    </pre>
+Run `cf unbind-service` to unbind the service from your application.
+
+<pre class="terminal">
+$ cf unbind-service a9s-elasticsearch-app my-elasticsearch-service
+</pre>
 
 
-### <a id="delete"></a>Delete a Service Instance
+### Delete a Service Instance
 
-Deleting a service deprovisions the corresponding infrastructure resources.
+After unbinding the service, it is no longer bound to an application. Run `cf delete-service` to delete the service:
 
-1. To delete a service instance, enter the following command:
+<pre class="terminal">
+$ cf delete-service my-elasticsearch-service
+</pre>
 
-    ```
-    $ cf delete-service SERVICE-INSTANCE-NAME
-    ```
- 
-    <pre class="terminal">
-    $ cf delete-service my-elasticsearch-service
-    </pre>
+It may take several minutes to delete the service. Deleting a service deprovisions the corresponding infrastructure resources.
+Run the `cf services` command to view the deletion status.
 
-    It might take several minutes to delete the service.
 
-1. To check the deletion status, enter the following command:
+##<a id='upgrade-service-plan'></a> Upgrade the Service Instance to another Service Plan
 
-    ```
-    $ cf services
-    ```
+Once created, you can upgrade your service instance to another, larger service plan. A larger service plan provides more CPU, RAM and storage. For more information, see the  <a href="http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html#update_service" target="_blank">Update a Service Instance</a> of the _Managing Service Instances with the cf CLI_ topic.
+
+<pre class="terminal">
+$ cf update-service my-elasticsearch-service -p a-bigger-plan
+</pre>
+
+Here are the plans you can upgrade to depending on the one you are currently
+using:
+
+* If you are currently using the `elasticsearch-single-small` plan, you can upgrade to the `monelasticsearchgodb-single-big` plan.
+
+* If you are currently using the `elasticsearch-cluster-small` plan, you can upgrade to the `elasticsearch-cluster-big` plan.
+
+##<a id='add-graphite-endpoint'></a>Add a Graphite Endpoint
+
+If you want to monitor your service with Graphite, you can set an endpoint to
+where to information will be sent with the `cf update-service` command. This command expects the <a href="http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html#arbitrary-params-update" target="_blank">-c flag</a>
+and a JSON string containing the `graphite` and `metrics_prefix` keys.
+
+<pre class="terminal">
+$ cf update-service my-elasticsearch-service -c '{ "graphite": ["yourspace.your-graphite-endpoint.com:12345"], "metrics_prefix": "your-api-key.my-cluster-elasticsearch" }'
+</pre>
+
+##<a id='add-syslog-endpoint'></a>Add a Syslog Endpoint
+
+The `cf update-service` command used with the <a href="http://docs.pivotal.io/pivotalcf/devguide/services/managing-services.html#arbitrary-params-update" target="_blank">-c flag</a> can let you stream your syslog to a third-party service. In this case, the command expects a JSON string containing the `syslog` key.
+
+<pre class="terminal">
+$ cf update-service my-elasticsearch-service -c '{ "syslog": ["logs4.your-syslog-endpoint.com:54321"] }'
+</pre>
