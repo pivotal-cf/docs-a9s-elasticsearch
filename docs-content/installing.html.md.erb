@@ -106,10 +106,13 @@ For more information, see [Understanding Lifecycle Errands](https://docs.pivotal
 
  * **Delete all a9s Elasticsearch instances**:
   This errand deletes all a9s Elasticsearch instances that were created with the `cf create-service` command.
-  <p class="note warning"><strong>Warning</strong>: This task cannot be undone. All VMs of the service instances are permanently deleted. If a service instance is bound to an app or has existing service keys, the errand fails.</p>
+  <p class="note warning"><strong>WARNING</strong>: This task cannot be undone.
+     All VMs of the service instances are permanently deleted.
+     If a service instance is bound to an app or has existing service keys, the errand fails.</p>
 
  * **Run Broker Deregistrar**:
-  This errand unregisters the a9s Elasticsearch for PCF service broker in Elastic Runtime. It also removes the a9s Elasticsearch service from the Elastic Runtime marketplace.
+  This errand unregisters the a9s Elasticsearch for PCF service broker in Elastic Runtime.
+  It also removes the a9s Elasticsearch service from the Elastic Runtime marketplace.
 
 
 ###<a id='resource-config'></a> Configure Resources
@@ -132,7 +135,8 @@ If you want to use a stemcell other than the default, click **Stemcell**, and th
 
 ##<a id="configure-service-instance"></a> Configure Service Plans
 
-The sizes and types of VMs used to provision service instances of a given service plan are specified in the **Cloud Config** pane of the a9s BOSH for PCF tile. See the <em>Cloud Config</em> section of the <a href="http://docs.pivotal.io/partners/a9s-bosh/installing.html">a9s BOSH for PCF installation documentation</a> that corresponds to your IaaS.</p>
+The sizes and types of VMs used to provision service instances of a given service plan are specified in the **Cloud Config** pane of the a9s BOSH for PCF tile.
+See the <em>Cloud Config</em> section of the <a href="http://docs.pivotal.io/partners/a9s-bosh/installing.html">a9s BOSH for PCF installation documentation</a> that corresponds to your IaaS.</p>
 
 The table below lists available service plans:
 
@@ -150,7 +154,8 @@ After updating the a9s Elasticsearch for PCF tile, run the Deployment Updater er
 
 <p class="note"><strong>Note</strong>: anynines recommends running the <a href="./installing.html#errands" target="_blank">smoke tests</a> before running this errand.</p>
 
-<p class="note"><strong>Note</strong>: To run the errand, you must know how to use the Ops Manager Director. For more information, see <a href="http://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#prepare" target="_blank">Advanced Troubleshooting with the BOSH CLI</a>.</p>
+<p class="note"><strong>Note</strong>: To run the errand, you must know how to use the Ops Manager Director.
+For more information, see <a href="http://docs.pivotal.io/pivotalcf/1-9/customizing/trouble-advanced.html#prepare" target="_blank">Advanced Troubleshooting with the BOSH CLI</a>.</p>
 
 1. SSH into the Ops Manager VM:
 <pre class="terminal">
@@ -213,7 +218,8 @@ Started preparing deployment > Preparing deployment. Done (00:00:01)
 &nbsp;
 Errand 'deployment-updater' completed successfully (exit code 0)
 </pre>
-<p class="note"><strong>Note</strong>: Depending on the number of service instances, the Deployment Updater may take significant time to finish running. BOSH shows no logging output while the errand runs.</p>
+<p class="note"><strong>Note</strong>: Depending on the number of service instances, the Deployment Updater may take significant time to finish running.
+BOSH shows no logging output while the errand runs.</p>
 
 ##<a id='interacting-with-the-backup-manager'></a> Trigger Backups and Restores on Demand
 
