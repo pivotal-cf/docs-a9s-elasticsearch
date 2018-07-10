@@ -133,9 +133,20 @@ $ cf update-service my-elasticsearch-service -p a-bigger-plan
 
 Here are the plans you can upgrade to, depending on the one you are currently using:
 
-* If you are currently using the `elasticsearch-single-small` plan, you can upgrade to the `elasticsearchgodb-single-big` plan.
-
-* If you are currently using the `elasticsearch-cluster-small` plan, you can upgrade to the `elasticsearch-cluster-big` plan.
+| Base Plan | Target Plan |
+|------|-----------|
+| elasticsearch-single-nano | elasticsearch-single-small <br> elasticsearch-single-medium <br> elasticsearch-single-big <br> elasticsearch-cluster-small <br> elasticsearch-cluster-medium <br> elasticsearch-cluster-big |
+| elasticsearch-single-small | elasticsearch-single-medium <br> elasticsearch-single-big <br> elasticsearch-cluster-small <br> elasticsearch-cluster-medium <br> elasticsearch-cluster-big |
+| elasticsearch-single-medium | elasticsearch-single-big <br> elasticsearch-cluster-medium <br> elasticsearch-cluster-big |
+| elasticsearch-single-big | elasticsearch-cluster-big |
+| elasticsearch-cluster-small | elasticsearch-cluster-medium <br> elasticsearch-cluster-big |
+| elasticsearch-cluster-medium | elasticsearch-cluster-big |
+| elasticsearch-single-nano-ssl | elasticsearch-single-small-ssl <br> elasticsearch-single-medium-ssl <br> elasticsearch-single-big-ssl <br> elasticsearch-cluster-small-ssl <br> elasticsearch-cluster-medium-ssl <br> elasticsearch-cluster-big-ssl |
+| elasticsearch-single-small-ssl | elasticsearch-single-medium-ssl <br> elasticsearch-single-big-ssl <br> elasticsearch-cluster-small-ssl <br> elasticsearch-cluster-medium-ssl <br> elasticsearch-cluster-big-ssl |
+| elasticsearch-single-medium-ssl | elasticsearch-single-big-ssl <br> elasticsearch-cluster-medium-ssl <br> elasticsearch-cluster-big-ssl |
+| elasticsearch-single-big-ssl | elasticsearch-cluster-big-ssl |
+| elasticsearch-cluster-small-ssl | elasticsearch-cluster-medium-ssl <br> elasticsearch-cluster-big-ssl |
+| elasticsearch-cluster-medium-ssl | elasticsearch-cluster-big-ssl |
 
 ## <a id='add-a-graphite-endpoint'></a> Add a Graphite Endpoint
 
