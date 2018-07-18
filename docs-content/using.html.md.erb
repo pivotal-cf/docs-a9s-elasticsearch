@@ -3,8 +3,6 @@ title: Using a9s Elasticsearch for PCF
 owner: Partners
 ---
 
-# Using the a9s Elasticsearch
-
 This topic describes how developers use a9s Elasticsearch.
 
 ## <a id='use-a9s-elasticsearch-with-an-application'></a> Use a9s Elasticsearch with an Application
@@ -83,7 +81,8 @@ System-Provided:
 ...
 ```
 
-You can use the host, username and password values to connect to your database with a Elasticsearch client.
+You can use the host, username, and password values to connect to your database with a Elasticsearch client.
+
 
 ## <a id='delete-an-a9s-elasticsearch-service-instance'></a> Delete an a9s Elasticsearch Service Instance
 
@@ -115,7 +114,6 @@ Run `cf unbind-service` to unbind the service from your application.
 $ cf unbind-service a9s-elasticsearch-app my-elasticsearch-service
 ```
 
-
 ### <a id='delete-a-service-instance'></a> Delete a Service Instance
 
 After unbinding the service, it is no longer bound to an application. Run `cf delete-service` to delete the service:
@@ -130,7 +128,7 @@ Run the `cf services` command to view the deletion status.
 
 ## <a id='upgrade-the-service-instance-to-another-service-plan'></a> Upgrade the Service Instance to Another Service Plan
 
-Once created, you can upgrade your service instance to another, larger service plan. A larger service plan provides more CPU, RAM and storage. For more information, see the  [Update a Service Instance](https://docs.cloudfoundry.org/devguide/services/managing-services.html#update_service) of the _Managing Service Instances with the cf CLI_ topic.
+Once created, you can upgrade your service instance to another, larger service plan. A larger service plan provides more CPU, RAM and storage. For more information, see the [Update a Service Instance](https://docs.cloudfoundry.org/devguide/services/managing-services.html#update_service) of the _Managing Service Instances with the cf CLI_ topic.
 
 ```bash
 $ cf update-service my-elasticsearch-service -p a-bigger-plan
@@ -153,34 +151,35 @@ Here are the plans you can upgrade to, depending on the one you are currently us
 | elasticsearch-cluster-small-ssl | elasticsearch-cluster-medium-ssl <br> elasticsearch-cluster-big-ssl |
 | elasticsearch-cluster-medium-ssl | elasticsearch-cluster-big-ssl |
 
+
 ## <a id='add-a-graphite-endpoint'></a> Add a Graphite Endpoint
 
 If you want to monitor your service with Graphite, you can set an endpoint to where to information will be sent with the `cf update-service` command. This command expects the [-c flag](https://docs.cloudfoundry.org/devguide/services/managing-services.html#arbitrary-params-binding) and a JSON string containing the `graphite` and `metrics_prefix` keys.
-Depending on your graphite provider, the `metrics_prefix` might require that each metric must start with an API key in their name. You can also change the interval within the data is send to the endpoint. To do this, modify `interval`; the default is 10s.
+Depending on your Graphite provider, the `metrics_prefix` might require that each metric must start with an API key in their name. You can also change the interval within the data is send to the endpoint. To do this, modify `interval`; the default is 10s.
 
 ```bash
 $ cf update-service my-elasticsearch-service -c '{ "graphite": ["yourspace.your-graphite-endpoint.com:12345"], "metrics_prefix": "your-api-key.my-cluster-elasticsearch", "interval": "5"}'
 ```
 
+
 ## <a id='add-a-syslog-endpoint'></a> Add a Syslog Endpoint
 
-The `cf update-service` command used with the [-c flag](https://docs.cloudfoundry.org/devguide/services/managing-services.html#arbitrary-params-binding) can let you stream your syslog to a third-party service. In this case, the command expects a JSON string containing the `syslog` key. You can also change the interval for the syslog with the same key used to specify graphite `interval`.
+The `cf update-service` command used with the [-c flag](https://docs.cloudfoundry.org/devguide/services/managing-services.html#arbitrary-params-binding) allows you to stream your syslog to a third-party service. In this case, the command expects a JSON string containing the `syslog` key. You can also change the interval for the syslog with the same key used to specify graphite `interval`.
 
 ```bash
 $ cf update-service my-elasticsearch-service -c '{ "syslog": ["logs4.your-syslog-endpoint.com:54321"], "interval": "5" }'
 ```
 
+
 ## <a id='cloud-foundry-application-security-groups'></a> Cloud Foundry Application Security Groups
 
 This topic describes how to check whether a security group was created.
 
-Each a9s Data Service will automatically create and update Cloud Foundry security groups in order to protected service instances to be accessed by applications not running in the same Cloud Foundry applications space.
-To get a better understanding about Security Groups you can have a look on the
-[Understanding Application Security Groups](https://docs.cloudfoundry.org/concepts/asg.html) topic.
+Each a9s Data Service will automatically create and update Cloud Foundry security groups in order to protected service instances to be accessed by applications not running in the same Cloud Foundry applications space. To understand Security Groups, see [Understanding Application Security Groups](https://docs.cloudfoundry.org/concepts/asg.html).
 
 ### <a id='get-service-instance-guid'></a> Get Service Instance GUID
 
-Run `cf service INSTANCE_NAME --guid` to get the guid of the service instance.
+Run `cf service INSTANCE_NAME --guid` to get the GUID of the service instance.
 
 ```bash
 $ cf service my-elasticsearch --guid
@@ -189,7 +188,7 @@ ca16f111-5073-40b7-973a-156c75dd3028
 
 ### <a id='check-available-security-groups'></a> Check Available Security Groups
 
-To see all available security groups use `cf security-groups`.
+To see all available security groups, run `cf security-groups`.
 
 ```
 $ cf security-groups
@@ -204,10 +203,10 @@ OK
 #4   guard_ca16f111-5073-40b7-973a-156c75dd3028   demonstrations   demo
 ```
 
-There you can see a security group named `guard_ca16f111-5073-40b7-973a-156c75dd3028`
-was successfully created.
+In the above example, `guard_ca16f111-5073-40b7-973a-156c75dd3028` was successfully created.
 
-*NOTE: in some circumstances the connection between the application and the service instance is not possible, in this case check if a security group was created.*
+<p class='note'><strong>Note:</strong> In some circumstances, the connection between the application and the service instance is not possible. In this case, check to see if a security group was created.</p>
+
 
 ## <a id='backup-and-restore-service-instances'></a> Back Up and Restore Service Instances
 
@@ -215,7 +214,7 @@ a9s Elasticsearch provides an easy way to create backups and restore if needed.
 
 ### <a id='get-dashboard-address-login-and-authorize'></a> Get Dashboard Address, Log In, and Authorize
 
-1. Grap the dashboard URL with `cf service SERVICE-NAME`.
+1. Grab the dashboard URL with `cf service SERVICE-NAME`.
   ```bash
   $ cf service my-elasticsearch
 
@@ -243,17 +242,18 @@ a9s Elasticsearch provides an easy way to create backups and restore if needed.
 
 ### <a id='perform-a-backup'></a> Perform a Backup
 
-On the dashboard, you can trigger a backup by clicking **Trigger backup**
+On the dashboard, you can trigger a backup by clicking **Trigger backup**.
 
 ![service-dashboard](images/service-dashboard.png)
 
-After a short period of time, the backup will be queued and the backup process will soon start.
+After a short period of time, the backup is queued.
 
 ![service-dashboard](images/service-dashboard-bkp-triggered.png)
 
 <p class='note'><strong>Note:</strong> Depending on the size of the data, the backup will take some time.</p>
 
 ### <a id='restore-a-backup'></a> Restore a Backup
+
 1. Click **Restore** and wait for the restore to trigger.
 
 ![service-dashboard](images/service-dashboard-restore-triggered.png)
@@ -262,19 +262,18 @@ After a short period of time, the backup will be queued and the backup process w
 
 ![service-dashboard](images/service-dashboard-final.png)
 
+
 ## <a id='make-a-service-instance-locally-available'></a> Make a Service Instance Locally Available
 
-It is possible to access any of the a9s Data Services locally. You can connect with a local client to the service for any purpose such as debugging.
-CF provides a smart way to create SSH forward tunnels through a pushed application.
-For more information about this feature, see the [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) section of the CF documentation.
+You can access any of the a9s Data Services locally. You can connect with a local client to the service for any purpose such as debugging. CF provides a smart way to create SSH forward tunnels through a pushed application. For more information about this feature, see the [Accessing Apps with SSH](https://docs.cloudfoundry.org/devguide/deploy-apps/ssh-apps.html) section of the CF documentation.
 
 First, you must have an application bound to the service. To do this, see [Bind an Application to a Service Instance](#bind-an-application-to-a-service-instance).
 
 <p class='note'><strong>Note:</strong> `cf ssh` support must be enabled in the platform. Your administrator can tell you whether it is enabled.</p>
 
-### <a id='get-the-service-url-and-credentials'></a> Get The Service Url and Credentials
+### <a id='get-the-service-url-and-credentials'></a> Get The Service URL and Credentials
 
-You must first follow the procedure in [Obtain Service Instance Access Credentials](#obtain-service-instance-access-credentials) to get the hostname of the service and the user credentials.
+Follow the procedure in [Obtain Service Instance Access Credentials](#obtain-service-instance-access-credentials) to get the hostname of the service and the user credentials.
 
 ```bash
 $ cf env a9s-elasticsearch-app
@@ -307,8 +306,7 @@ Note the host `d67901c.service.dc1.a9svs`, the username `a9s-brk-usr`, and the p
 
 ### <a id='create-a-tunnel-to-the-service'></a> Create a Tunnel to the Service
 
-With `cf ssh`, you can create a SSH forward tunnel to the management dashboard.
-Use port `9200` to connect to the a9s Elasticsearch Instance.
+With `cf ssh`, you can create a SSH forward tunnel to the management dashboard. Use port `9200` to connect to the a9s Elasticsearch Instance.
 
 ```bash
 $ cf ssh a9s-elasticsearch-app -L 9200:d67901c.service.dc1.a9svs:9200
