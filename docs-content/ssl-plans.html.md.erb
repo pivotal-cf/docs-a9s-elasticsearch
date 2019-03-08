@@ -7,8 +7,8 @@ This topic provides usage guidance for SSL/TLS plans of a9s Data Services.
 
 ## <a id='providing-your-own-key'></a> Providing Your Own TLS Key
 
-By default a self signed certificate is created, however when creating and
-updating a data service instance. It is possible to provide your own key,
+A self-signed certificate is created by default. However, when creating and
+updating a data service instance it is possible to provide your own key,
 certificate and CA certificate. The certificate must be a wildcard certificate
 for subdomains under the service domain & node domain.
 
@@ -43,7 +43,7 @@ way to achieve this is to add the CA Certificate to the trusted CAs of your app.
 You will find a variable called `cacrt` in the `credentials` hash provided to
 your app via the `VCAP_SERVICES` environment variable.
 
-For some organisations, such as those already operating internal CAs, it might
+For some organizations, such as those already operating internal CAs, it might
 be best to distribute a CA via a custom buildpack in conjunction with [providing
 your own key](ssl-plans.html#providing-your-own-key).
 

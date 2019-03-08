@@ -37,7 +37,7 @@ The DNS release provides a way to delegate certain domains via the handlers prop
 a9s Elasticsearch comes with the a9s BOSH DNS Handler.
 The release creates a file which is used by BOSH DNS to add an additional BOSH handler to the BOSH DNS configuration.
 See [Additional Handlers](https://bosh.io/docs/dns/#additional-handlers).
-The file is stored here: `/var/vcap/jobs/a9s-elasticsearch-bosh-dns-handler/dns/handlers.json`.
+The file is stored here: `/var/vcap/jobs/a9s-elasticsearch-bosh-dns-handler/dns/handlers.json`.<br>
 It follows the [handlers_files_glob](https://bosh.io/jobs/bosh-dns?source=github.com/cloudfoundry/bosh-dns-release#p=handlers).
 The DNS Handler is only applied to the Diego cells where it is needed. It is applied through a runtime configuration.
 The tile must be deployed before the feature can be enabled, because it refers to an already installed a9s Elasticsearch for PCF tile.
