@@ -1,22 +1,22 @@
 ---
-title: Installing and Configuring the a9s Elasticsearch for PCF
+title: Installing and Configuring the a9s Elasticsearch for Pivotal Platform
 owner: Partners
 ---
 
-This topic describes how to install and configure a9s Elasticsearch for Pivotal Cloud Foundry (PCF).
+This topic describes how to install and configure a9s Elasticsearch for Pivotal Platform.
 
 
-## <a id='install'></a> Install a9s Elasticsearch for PCF
+## <a id='install'></a> Install a9s Elasticsearch for Pivotal Platform
 
-To install a9s Elasticsearch for PCF, do the following:
+To install a9s Elasticsearch for Pivotal Platform, do the following:
 
 1. Download the product file from [Pivotal Network](https://network.pivotal.io/products/a9s-elasticsearch).
 
 1. Navigate to the Ops Manager Installation Dashboard and click **Import a Product**
   to upload the product file.
 
-1. Click **Add** or **+** (depending on the PCF version) next to the uploaded a9s
-  Elasticsearch for PCF tile in the Ops Manager **Available Products** view to
+1. Click **Add** or **+** (depending on the Pivotal Platform version) next to the uploaded a9s
+  Elasticsearch for Pivotal Platform tile in the Ops Manager **Available Products** view to
   add it to your staging area.
 
 1. Click the new tile, then click **Settings** to review the configuration settings
@@ -32,8 +32,8 @@ To install a9s Elasticsearch for PCF, do the following:
 
 5. Click **Apply Changes** to deploy the service.
 
-After you install the a9s Elasticsearch for PCF, it is available in the list of
-Marketplace services. For more information, see [Using a9s Elasticsearch for PCF](./using.html).
+After you install the a9s Elasticsearch for Pivotal Platform, it is available in the list of
+Marketplace services. For more information, see [Using a9s Elasticsearch for Pivotal Platform](./using.html).
 
 ### <a id="azs"></a> Assign AZs and Networks
 
@@ -291,7 +291,7 @@ can find <a href="name-resolving.html#name-resolving-with-a9s-bosh-dns-handler">
 ### <a id='errands'></a> Configure Errands
 
 Use **Errands** to configure the lifecycle errands that run when you install or
-uninstall a9s Elasticsearch for PCF. The list below describes each errand. For
+uninstall a9s Elasticsearch for Pivotal Platform. The list below describes each errand. For
 more information, see [Lifecycle Errands](https://docs.pivotal.io/tiledev/tile-errands.html).
 
 <%= image_tag("errands.png") %>
@@ -299,24 +299,24 @@ more information, see [Lifecycle Errands](https://docs.pivotal.io/tiledev/tile-e
 #### <a id=''></a> Post-Deploy Errands
 
 * **Run Template Uploader**: This errand is required to configure generic components
-  that are included in a9s Elasticsearch for PCF with Elasticsearch configurations.
+  that are included in a9s Elasticsearch for Pivotal Platform with Elasticsearch configurations.
   Disabling this errand may speed up the deployment of all tiles.
   &nbsp;
   <p class="note"><strong>Note:</strong> To ensure your configuration remains
   up-to-date, disable this errand only when necessary.</p>
   &nbsp;
-* **Run Broker Registrar**: This errand registers the a9s Elasticsearch for PCF
+* **Run Broker Registrar**: This errand registers the a9s Elasticsearch for Pivotal Platform
   service broker at the Elastic Runtime. This makes the service available in the
   Marketplace.
 
 * **Run Smoke Tests**: This errand runs a series of basic tests against your
-  a9s Elasticsearch for PCF installation to ensure that it is configured properly.
+  a9s Elasticsearch for Pivotal Platform installation to ensure that it is configured properly.
   Those tests may take a while, probably over 30 minutes.
 
 #### <a id='pre-delete'></a> Pre-Delete Errands
 
 * **Delete all a9s Elasticsearch instances**: This errand deletes all a9s
-  Elasticsearch instances which were created with `cf create-service` by PCF end users.
+  Elasticsearch instances which were created with `cf create-service` by Pivotal Platform end users.
   &nbsp;
   <p class="note warning"><strong>WARNING:</strong> This is an absolutely destructive
   task and cannot be undone. All VMs of the service instances are deleted
@@ -324,14 +324,14 @@ more information, see [Lifecycle Errands](https://docs.pivotal.io/tiledev/tile-e
   are existing, The errand fails.</p>
   &nbsp;
 * **Run Broker Deregistrar**: This deregisters the a9s Elasticsearch for
-  PCF service broker in Elastic Runtime. This errand removes the a9s Elasticsearch
+  Pivotal Platform service broker in Elastic Runtime. This errand removes the a9s Elasticsearch
   service from the Marketplace.
 
 ### <a id='resource-config'></a> Configure Resources
 
 You can configure the dimensions of the VMs that host the a9s Elasticsearch for
-PCF components. This configuration does not cover the dedicated Elasticsearch
-instances that run on VMs provided by the a9s BOSH tile for PCF. For more information,
+Pivotal Platform components. This configuration does not cover the dedicated Elasticsearch
+instances that run on VMs provided by the a9s BOSH tile for Pivotal Platform. For more information,
 see [Configure Service Plan VMs](installing.html#plan-configuration).
 
 <p class="note"><strong>Note:</strong> anynines recommends using a VM type of
